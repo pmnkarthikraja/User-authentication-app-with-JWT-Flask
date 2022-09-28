@@ -1,0 +1,75 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resetting password</title>
+    <style>
+         .submit-button button{
+            width: 10%;
+            height: 35px;
+            text-align: center;
+            margin: 0.5cm 0 0 0.5cm;
+            background-color: #1877f2;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .submit-button button:hover{
+            background-color: #1852F9;
+        }
+        .submit-button button a{
+            text-decoration: none;
+            color:white;
+        }
+        .pass-box input{
+            width: 90%;
+            justify-content:space-around ;
+            height: 1cm;
+            display: inline-block;
+            margin-left: 0.5cm;
+            box-sizing: border-box;
+            border-style: solid;
+            border: 1px grey;
+            border-radius: 4%;
+            box-shadow:3px 1px 10px 1px grey;
+            outline: none;
+            padding: 0.5cm;
+        }
+        
+    </style>
+</head>
+<script>
+    function validateForm(){
+        const a=document.getElementById("pass1").value;
+        const b=document.getElementById("pass2").value;
+        if (a!=b){
+            alert("Password did not match!")
+            window.location.reload(true);
+            return false;
+        }
+    }
+</script>
+<body>
+    
+    <form action={{"/resetting"}} method="post" onsubmit="return validateForm()">
+   <div class="pass_box"><span style="margin-right:0.29cm;">Create new password: </span> <input type="password" name="" id="pass1"></div><br><br>
+    <div class="pass_box"><span>Confirm new password: </span><input type="password" name="reset_password" id="pass2"></div>
+    <div><input type="text" name="reset_email" value={{reset_email}} id="" style="display:none;"></div>
+    <div class="submit-button" ><button type="submit">submit</button>
+    </form>
+   
+
+    {% if success==True %}
+    <div>
+        <form action={{"/"}}>
+       <span style="color: green;"> Successfully password changed!</span>
+       <div class="submit-button">
+        <button type="submit">Home</button>
+       </div>
+    </form>
+    </div>
+
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,189 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+    <title>SignUp</title>
+    <style>
+        body{
+            background-color: #f5f6f7;
+        }
+        .left-div{
+            float: left;
+            display: flex;
+            justify-content:center;
+            align-items: center;
+            width:500px;
+            height: 400px;
+            border: 1px;
+            margin-left: 2cm;
+            font-size: larger;
+            color: #1852F9;
+            font-size:0.8cm;
+        }
+        .left-div h2{
+            margin-top: -3cm;
+        }
+        .right-div{
+            display: flex;
+            justify-content:space-around;
+            align-items: center;
+            width: 380px;
+            height: 380px;
+            margin:3.5cm 5cm 1cm;
+            margin-left:10cm;
+            background-color: white;
+            border: 2px white;
+            border-style: solid;
+            border-radius: 4%;
+            box-shadow:3px 1px 10px 1px grey;
+        }
+        .inner-input-boxes{
+            height: 200px;
+            width: 95%;
+            margin-top: -2cm;
+            
+            
+        }
+        .email-box input{
+            width: 90%;
+            justify-content:space-around ;
+            height: 1cm;
+            display: inline-block;
+            margin-left: 0.5cm;
+            box-sizing: border-box;
+            border-style: solid;
+            border: 1px grey;
+            border-radius: 4%;
+            box-shadow:3px 1px 10px 1px grey;
+            outline: none;
+            padding: 0.5cm;
+        }
+        
+        .pass-box input{
+            margin-top: 5px;
+            margin-left: 0.5cm;
+            width:90%;
+            height: 1cm;
+            justify-content: space-around;
+            display:inline-block;
+            border-style: solid;
+            border: 1px grey;
+            border-radius: 4%;
+            box-shadow:3px 1px 10px 1px grey;
+            padding: 0.5cm;
+            outline: none;
+        }
+        
+        .submit-button button{
+            width: 90%;
+            height: 35px;
+            text-align: center;
+            margin: 0.5cm 0 0 0.5cm;
+            background-color: #1877f2;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .submit-button button:hover{
+            background-color: #1852F9;
+        }
+        .submit-button button a{
+            text-decoration: none;
+            color:white;
+        }
+        .pass-forget{
+            text-align: center;
+            margin: 0.5cm 0 0 0.5cm;
+        }
+        .pass-forget a{
+            text-decoration: none;
+            color:#1852F9;
+        }
+        .line{
+            margin-left: 0.5cm;
+            margin-top: 1cm;
+            color: lightgray;
+            border-bottom: solid lightgray 2px;
+        }
+        .signup-button button{
+            justify-content: space-around;
+            margin: 1cm 0 0 2cm;
+            height: 35px;
+            width: 60%;
+            background-color: #42b72a;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+        .signup-button button:hover{
+            background-color: #42A911;
+        }
+        .mail-error{
+            font-size: small;
+            margin-left: 0.5cm;
+            color: red;
+            height: 10px;
+            margin-bottom:4px;
+            display: block;
+        }
+        .createaccounttopic{
+            margin-top: -1cm;
+            margin-left: 0.5cm;
+            color: #1874f2;
+
+        }
+        
+    </style>
+  
+</head>
+<body>
+    <script>
+    function validateForm(){
+        let fname=document.forms['signupform']['firstname'].value;
+        let lname=document.forms['signupform']['lastname'].value;
+        let dob=document.forms['signupform']['dob'].value;
+        let email=document.forms['signupform']['email'].value;
+        let password=document.forms['signupform']['password'].value;
+      
+        if ((fname=="") | (lname=="")|(dob=="")|(email=="")|(password=="")){
+            if (fname==""){document.getElementById("fname").style.boxShadow="3px 1px 10px 1px red"}
+            if (lname==""){document.getElementById("lname").style.boxShadow="3px 1px 10px 1px red"}
+            if (dob==""){document.getElementById("dob").style.boxShadow="3px 1px 10px 1px red"}
+            if (email==""){document.getElementById("email").style.boxShadow="3px 1px 10px 1px red"}
+            if (password==""){document.getElementById("password").style.boxShadow="3px 1px 10px 1px red"}
+            window.location.reload(true);
+            return false; 
+        }
+    }
+    </script>
+    
+    <div class="right-div">
+        
+    <div class="inner-input-boxes">
+        <div class="createaccounttopic"><h2>Create your account here</h2></div>
+        <form action={{"/home"}} name="signupform" method="post" onsubmit="return validateForm()">
+       
+        <div class="email-box" > <input id="fname" type="text"  name="firstname" placeholder="Firstname" id=""></div>
+       
+        <div class="pass-box" ><input id="lname" type="text" name="lastname" placeholder="Lastname" id=""></div>
+
+        <div class="pass-box" ><input id="dob" type="date"  name="dob" placeholder="Date of birth" id=""></div>
+       
+        <div class="pass-box" ><input id="email" type="email" name="email" placeholder="Email" id=""></div>
+
+        <div class="pass-box" ><input id="password" type="password" name="password" placeholder="Password" id=""></div>
+
+        <div class="signup-button"><a ><button type="submit" >signup</button></a></div>
+    </form>
+        
+
+        
+       
+    </div>
+    </div>
+</body>
+</html>

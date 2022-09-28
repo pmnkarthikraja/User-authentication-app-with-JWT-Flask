@@ -1,0 +1,114 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forget password?</title>
+    <style>
+         body{
+            background-color: #f5f6f7;
+        }
+        .otp{
+            display: block;
+        }
+        .left-div{
+            justify-content:center;
+            width:600px;
+            height:50px;
+            border: 4px;
+            background-color: aliceblue;
+            /* margin-left: 2cm; */
+            font-size: large;
+            color: #1852F9;
+            font-size:0.4cm;
+        }
+        .left-div h2{
+            margin-top: 1cm;
+        }
+        .email-box input{
+            width: 40%;
+            justify-content:space-around ;
+            height: 1cm;
+            display: inline-block;
+            margin-left: 0cm;
+            box-sizing: border-box;
+            border-style: solid;
+            border: 1px grey;
+            border-radius: 4%;
+            box-shadow:3px 1px 10px 1px grey;
+            outline: none;
+            padding: 0.5cm;
+        }
+        .submit-button button{
+            width: 15%;
+            height: 35px;
+            text-align: center;
+            margin: 0.5cm 0 0 0 ;
+            background-color: #1877f2;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .submit-button button:hover{
+            background-color: #1852F9;
+        }
+        .submit-button button a{
+            text-decoration: none;
+            color:white;
+        }
+    </style>
+</head>
+<script>
+    var a=false;
+    function validateForm(){
+        let x=document.forms['otp-form']['mail'].value;
+        if ((x=="")){
+            alert("Please Enter valid details!");
+        }
+        else{
+            document.getElementById("otpbox").disabled=false;
+        }
+    }
+</script>
+<script>
+    if (a==true){
+        document.getElementById("show_otp").style.display="block";
+    }
+</script>
+
+<body>
+
+    <div class="left-div"><h2>Forget password?</h2></div>
+    <div class="left-div"><h2>Enter your registered email:</h2></div>
+    {% if a!=True %}
+    <form action={{"/otp-verifying"}} method="post" name="otp-form" onsubmit="return validateForm()">
+    <div class="email-box"><input type="email" name="mail" id="mail-box" placeholder="Enter your Email" id=""></div>
+    <div class="submit-button"><button type="submit">submit</button></div>
+    {% endif %}
+
+    {% if notregister==True %}
+    <div>
+         <span style="color: red;margin-top:1cm;"> User is not registered! </span>
+    </div>
+    {% endif %}
+
+    {% if a==True %}
+    <div style="margin-top:0.2cm;">
+    <span style="color: green;">Successfully otp sent to your registered email id!</span>
+</div>
+    <div class="otpbox" style="margin-top: 1cm;">
+    <form action={{"/otp-verified"}} method="post">
+    <span style="background-color: lightgreen;">Enter otp:</span><input type="text" name="otp-entered" maxlength="6" value="" id="">
+
+    <div><input type="text" name="main-otp" value={{otp}} id="" style="display: none;"></div>
+    <div><input type="text" name="reset_email" value={{reset_email}} id="" style="display: none;"></div>
+
+    <div class="submit-button"> <button type="submit">submit</button></div>
+</form>
+</div>
+    {% endif %}
+    </form>
+
+
+</body>
+</html>

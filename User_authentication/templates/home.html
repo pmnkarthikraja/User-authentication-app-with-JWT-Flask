@@ -1,0 +1,192 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+    <title>Homepage</title>
+    <style>
+        body{
+            background-color: #f5f6f7;
+        }
+        .left-div{
+            float: left;
+            display: flex;
+            justify-content:center;
+            align-items: center;
+            width:500px;
+            height: 400px;
+            border: 1px;
+            margin-left: 2cm;
+            font-size: larger;
+            color: #1852F9;
+            font-size:0.8cm;
+        }
+        .left-div h2{
+            margin-top: -3cm;
+        }
+        .right-div{
+            display: flex;
+            justify-content:space-around;
+            align-items: center;
+            width: 380px;
+            height: 380px;
+            margin:3.5cm 5cm 1cm;
+            margin-left:10cm;
+            background-color: white;
+            border: 2px white;
+            border-style: solid;
+            border-radius: 4%;
+            box-shadow:3px 1px 10px 1px grey;
+        }
+        .inner-input-boxes{
+            height: 200px;
+            width: 95%;
+            margin-top: -2cm;
+            
+            
+        }
+        .email-box input{
+            width: 90%;
+            justify-content:space-around ;
+            height: 1cm;
+            display: inline-block;
+            margin-left: 0.5cm;
+            box-sizing: border-box;
+            border-style: solid;
+            border: 1px grey;
+            border-radius: 4%;
+            box-shadow:3px 1px 10px 1px grey;
+            outline: none;
+            padding: 0.5cm;
+        }
+        
+        .pass-box input{
+            margin-top: 5px;
+            margin-left: 0.5cm;
+            width:90%;
+            height: 1cm;
+            justify-content: space-around;
+            display:inline-block;
+            border-style: solid;
+            border: 1px grey;
+            border-radius: 4%;
+            box-shadow:3px 1px 10px 1px grey;
+            padding: 0.5cm;
+            outline: none;
+        }
+        
+        .submit-button button{
+            width: 90%;
+            height: 35px;
+            text-align: center;
+            margin: 0.5cm 0 0 0.5cm;
+            background-color: #1877f2;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .submit-button button:hover{
+            background-color: #1852F9;
+        }
+        .submit-button button a{
+            text-decoration: none;
+            color:white;
+        }
+        .pass-forget{
+            text-align: center;
+            margin: 0.5cm 0 0 0.5cm;
+        }
+        .pass-forget a{
+            text-decoration: none;
+            color:#1852F9;
+        }
+        .line{
+            margin-left: 0.5cm;
+            margin-top: 1cm;
+            color: lightgray;
+            border-bottom: solid lightgray 2px;
+        }
+        .signup-button button{
+            justify-content: space-around;
+            margin: 1cm 0 0 2cm;
+            height: 35px;
+            width: 60%;
+            background-color: #42b72a;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+        .signup-button button:hover{
+            background-color: #42A911;
+        }
+        .mail-error{
+            font-size: small;
+            margin-left: 0.5cm;
+            color: red;
+            height: 10px;
+            margin-bottom:4px;
+            display: block;
+        }
+        .accountcreated{
+            margin-top:-0.5cm;
+            margin-left: 0.5cm;
+            color:green;
+        }
+        
+        
+    </style>
+   <script>
+    // function show(){
+    // const a=document.getElementById("mail-errorid").style.display='block';
+    // return a;
+    // }
+    function validateForm(){
+        let x=document.forms['loginform']['email'].value;
+        let y=document.forms['loginform']['password'].value;
+        if ((x=="") | (y=="")){
+            if (x==""){alert("Please enter your email!")}
+            if (y==""){alert("Please enter your password")}
+            window.location.reload(true);
+            return false; 
+        }
+    }
+   </script>
+</head>
+<body>
+   
+    <div class="left-div">
+        <h2>User Authentication </h2>
+    </div>
+    <div class="right-div">
+    <div class="inner-input-boxes">
+        {% if accountcreated == True %}
+        <p class="accountcreated">Successfully account created!</p>
+        {% endif %}
+        <form action={{"/success-login"}} name="loginform" method="post" onsubmit="return validateForm()">
+       <div class="email-box"> <input type="text"  name="email" placeholder="Email address" id=""></div>
+       
+       {% if showlogic== "True" %}
+       <div class="mail-error" id="mail-errorid"> <p >The email address you entered isn't connected to an account!</p></div>
+       {% endif %}
+
+       <div class="pass-box"> <input class="password_box" type="password" name="password" placeholder="Password" id=""></div>
+       {% if entered_password == "False" %}
+        <p style="color: red;margin-left:0.5cm;margin-bottom: -0.2cm;">
+            Password is wrong.. Try again!
+        </p>
+       {% endif %}
+
+       <div class="submit-button"><a href="http://www.google.co.in"><button type="submit" >submit</button></a></div>
+    </form>
+        
+        <div class="pass-forget"><a href={{"/forget-password"}}>Forgotten password?</a></div>
+        
+        <div class="line"></div>
+        <div class="signup-button"><a href={{"/signup"}}><button>Sign Up</button></a></div>
+    </div>
+    </div>
+</body>
+</html>

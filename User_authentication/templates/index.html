@@ -1,0 +1,47 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application</title>
+    <style>
+        body{
+            background-color: #f5f6f7;
+        }
+         .res_button button{
+            width: 20%;
+            height: 35px;
+            text-align: center;
+            margin: 0.5cm 0 0 0.5cm;
+            background-color: #1877f2;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .res_button button:hover{
+            background-color: #1852F9;
+        }
+        .res_button button a{
+            text-decoration: none;
+            color:white;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <form action={{"/signout"}}>
+        <button type="submit" style="float: right;padding:0.2cm;margin-right:1cm;background-color:lightgreen;cursor:pointer;">logout</button>
+    </form>
+    </div>
+    <h2>Logined as <span style="color: green;">{{session.email}}</span></h2>
+    <p>Token Id: </p><textarea name="" id="" cols="100" rows="3">{{session.token}}</textarea>
+    <div>
+        <h2 style="color: blue;">You can reset password here!</h2>
+    </div>
+    <div class="res_button">
+        
+    <button ><a href={{"/otp-verified"}}>Reset your password</a></button>
+       
+    </div>
+</body>
+</html>
