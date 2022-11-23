@@ -188,7 +188,7 @@ def reset():
         mydb.commit()
         print("Finished")
         print("Final Finished")
-
+        print("Functional print line")
     return render_template("reset.html",success=True)
 
 
