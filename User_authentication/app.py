@@ -180,11 +180,13 @@ def reset():
         query="update accountdetails set password='%s' where email='%s';"%(encrypt_password,reset_email)
         mycursor.execute(query)
         mydb.commit()
+        print("reset email stage completed")
     if reset_email=="None":
         print("session: ",session["email"])
         query="update accountdetails set password='%s' where email='%s';"%(encrypt_password,session["email"])
         mycursor.execute(query)
         mydb.commit()
+        print("Finished")
 
     return render_template("reset.html",success=True)
 
