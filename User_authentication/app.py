@@ -187,6 +187,7 @@ def reset():
         mycursor.execute(query)
         mydb.commit()
         print("Finished")
+        print("Final Finished")
 
     return render_template("reset.html",success=True)
 
